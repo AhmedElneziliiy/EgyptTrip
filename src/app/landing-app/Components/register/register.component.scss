@@ -1,0 +1,29 @@
+.bg-gradient {
+    background: linear-gradient(135deg, #fbe8c9, #fff7e0);
+}
+
+.text-highlight {
+    color: #c68919;
+    font-weight: 600;
+}
+
+.icon-highlight {
+    color: #c68919;
+}
+
+.option-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    border-radius: 0.75rem;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+}

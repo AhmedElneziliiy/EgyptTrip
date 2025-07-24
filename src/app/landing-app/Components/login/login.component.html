@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-lg" style="max-width: 500px; width: 100%; padding: 50px;">
+    <h2 class="text-center mb-4">Login</h2>
+    <form (ngSubmit)="login()">
+      <div class="mb-3">
+        <label for="username" class="form-label">Email</label>
+        <input type="email" class="form-control" id="username" placeholder="Enter username" required
+          [(ngModel)]="user.email" name="email" (change)="logUser()">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" required
+          [(ngModel)]="user.password" name="password" (change)="logUser()">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+      <button routerLink="/register" class="btn btn-primary w-100 mt-3">Don't have an account? Register</button>
+    </form>
+  </div>
+</div>

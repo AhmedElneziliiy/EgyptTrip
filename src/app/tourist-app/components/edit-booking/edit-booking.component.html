@@ -1,0 +1,29 @@
+<!-- Start Of Create Package  -->
+<div class="edit-booking pt-5 mb-2">
+    <div class="container">
+        <div class="booking-info pt-3">
+            <h2>Booking Information</h2>
+            @defer (when isBookingReqFinished){
+            <form (ngSubmit)="saveData()">
+                <label class="mt-5">Booking Date</label>
+                <input type="date" placeholder="Enter Booking Date" [(ngModel)]="BookingDate" name="date">
+                <label class="mt-5">Price</label>
+                <input type="number" placeholder="Enter Booking Price" [(ngModel)]="booking.totalPrice" name="price">
+                <label class="mt-5">Status</label>
+                <input type="string" placeholder="Enter Status" [(ngModel)]="booking.status" name="status">
+                <button class="ms-auto">Next</button>
+            </form>
+            }@placeholder{
+            <div class="loading-container mt-5">
+                <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+            @loading(minimum 2s){
+            <div class="loading-container mt-5">
+                <mat-progress-spinner color="accent" diameter="40" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Of Create Package  -->

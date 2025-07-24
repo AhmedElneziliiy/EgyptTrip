@@ -1,0 +1,47 @@
+.booking-info {
+    position: relative;
+}
+
+.edit-booking .container {
+    padding: 10px 50px;
+}
+
+.edit-booking .container h1 {
+    font-size: 32px;
+}
+
+.edit-booking .container h1,
+.booking-info h2 {
+    color: black;
+}
+
+.edit-booking .container p {
+    color: grey;
+}
+
+label {
+    color: black;
+}
+
+input {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+form>button {
+    background-color: antiquewhite;
+    color: black;
+    border: 1px solid black;
+    padding: 8px 30px;
+    margin-top: 20px;
+    font-weight: bold;
+    border-radius: 50px
+}
+
+.loading-container {
+    margin-top: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}

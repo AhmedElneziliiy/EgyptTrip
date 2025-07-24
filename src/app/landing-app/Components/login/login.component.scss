@@ -1,0 +1,23 @@
+body.bg-gradient {
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+}
+
+.card {
+  border-radius: 1rem;
+  background-color: white;
+}
+
+.btn-primary {
+  background-color: #4e54c8;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #3c40a0;
+}
+
+input {
+  padding: 8px;
+  width: 100%;
+  font-size: 14px;
+}
