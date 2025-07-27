@@ -11,7 +11,7 @@ import { TouristNavbarComponent } from '../tourist-navbar/tourist-navbar.compone
 
 @Component({
   selector: 'app-edit-booking',
-  imports: [MatProgressSpinner, FormsModule, TouristNavbarComponent],
+  imports: [MatProgressSpinner, FormsModule],
   providers: [TouristNavbarComponent],
   templateUrl: './edit-booking.component.html',
   styleUrl: './edit-booking.component.scss'

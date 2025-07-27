@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, tap, catchError, throwError } from 'rxjs';
 import { HotelBooking } from '../Hotels/main-page/interfaces/hotel-booking';
 import { TourGuideBooking } from '../Hotels/main-page/interfaces/tour-guide-booking';
+import { CreatePaymentRequest } from '../Hotels/main-page/interfaces/payment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,22 @@ export class BookingService {
       catchError(this.handleError)
     );
   }
- createTourGuideBooking(booking: TourGuideBooking): Observable<any> {
+  createTourGuideBooking(booking: TourGuideBooking): Observable<any> {
     return this.http.post(`${this.apiUrl}/tourguide`, booking).pipe(
       tap(response => console.log('API Response (CreateTourGuideBooking):', response)),
       catchError(this.handleError)
     );
   }
+
+
+  CreatePaymentIntent(payment:CreatePaymentRequest): Observable<any> {
+    return this.http.post(`https://fizo.runasp.net/api/Payment/CreatePayment`,payment).pipe(
+      tap(response => console.log('API Response (CreatePaymentIntent):', response)),
+      catchError(this.handleError)
+    );
+
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An error occurred while creating the booking.';
     if (error.error instanceof ErrorEvent) {
