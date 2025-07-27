@@ -3,10 +3,11 @@ import { TourGuide } from './../interfaces/tour-guide';
 import { TourGuideService } from './../tour-guide.service';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteImageDialogComponent } from './delete-image-dialog/delete-image-dialog.component';
 import { AlertDialogComponent } from '../../alert-dialog-component/alert-dialog-component';
+import { LoadingDialogComponent } from '../../shared-app/Components/loading-dialog/loading-dialog.component';
 
 @Component({
   selector: 'app-manager-tour-guide-profile',
@@ -30,6 +31,8 @@ export class ManagerTourGuideProfileComponent implements OnInit {
 
   photos: File[] = [
   ];
+
+  router = inject(Router);
 
 
   ngOnInit(): void {
@@ -83,14 +86,28 @@ export class ManagerTourGuideProfileComponent implements OnInit {
         formData.append('Photos', e);
       }
     );
+    const ref = this.matDialog.open(LoadingDialogComponent, {
+      disableClose: true,
+    });
     this.service.editTourGuide(formData).subscribe(
       {
+
         next: (value) => {
+          ref.close();
           this.tourGuide = value;
           this.photos = [];
-          alert('Profile Updated Successfully');
+          this.matDialog.open(AlertDialogComponent, {
+            data: {
+              title: 'TripLink',
+              message: 'Profile Updated Successfully',
+              method: () => {
+                this.router.navigate(['/tour-guide/dashboard'])
+              }
+            }
+          });
         },
         error: (err) => {
+          ref.close();
           let message = '';
           err['error']['errors'].map((e: string) => message += e + '\n');
           this.matDialog.open(AlertDialogComponent, {

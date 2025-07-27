@@ -1,11 +1,13 @@
-import { Component, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Component, inject, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CompanyService } from '../services/company.service';
 import { Destination, Package } from '../interfaces/package';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { AlertDialogComponent } from '../../alert-dialog-component/alert-dialog-component';
 import { MatDialog } from '@angular/material/dialog';
+import { title } from 'process';
+import { LoadingDialogComponent } from '../../shared-app/Components/loading-dialog/loading-dialog.component';
 
 
 @Component({
@@ -21,6 +23,8 @@ export class EditPackageComponent implements OnInit {
   destinations: Destination[] = [];
 
   photos: File[] = [];
+
+  router = inject(Router);
 
   ngOnInit(): void {
     this.service.destinations$.subscribe(
@@ -88,8 +92,12 @@ export class EditPackageComponent implements OnInit {
     this.photos.map((e) => {
       formData.append('Photos', e);
     });
+    const ref = this.matDialog.open(LoadingDialogComponent, {
+      disableClose: true,
+    });
     this.service.editPackage(formData, this.package.packageId).subscribe({
       next: (value) => {
+        ref.close();
         console.log(value);
         this.package = value;
         this.package.destinationIds = [];
@@ -102,10 +110,19 @@ export class EditPackageComponent implements OnInit {
         this.service.getPackageById(this.package.packageId).subscribe((e) => {
           this.package.photoUrls = e.photoUrls;
         });
-        alert("Package Update Successfully");
+        this.matDialog.open(AlertDialogComponent, {
+          data: {
+            title: 'TripLink',
+            message: 'Package Updated Successfully!',
+            method: () => {
+              this.router.navigate(['/company/dashboard']);
+            }
+          }
+        });
         this.photos = [];
       },
       error: (err) => {
+        ref.close();
         let message = '';
         this.matDialog.open(AlertDialogComponent, {
           data: {

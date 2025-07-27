@@ -37,109 +37,96 @@ import { companyGuard, hotelGuard, tourGuideGuard, touristGuard } from './landin
 import { TouristDashboardComponent } from './tourist-app/components/tourist-dashboard/tourist.dashboard.component';
 import { CompanyRegisterComponent } from './landing-app/Components/register/company-register/company-register.component';
 import { CreateRoomComponent } from './hotels-app/create-room/create-room.component';
-import { ManageRoomsComponent } from './hotels-app/manage-rooms/manage-rooms.component';
 import { RoomsTableComponent } from './hotels-app/manage-rooms/rooms-table/rooms-table.component';
 import { ManageRoomComponent } from './hotels-app/manage-rooms/manage-room/manage-room.component';
 import { EditBookingComponent } from './tourist-app/components/edit-booking/edit-booking.component';
-import { TouristComponent } from './tourist-app/components/tourist-component/tourist-component.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'Tour Guides', component: TourGuidesComponent },
+
+  // ----------------- AUTH ROUTES -----------------
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'register/company', component: CompanyRegisterComponent },
+  { path: 'register/guide', component: TourGuideRegisterComponent },
+  { path: 'register/hotel', component: HotelRegisterComponent },
+  { path: 'register/tourist', component: TouristRegisterComponent },
+
+  // ----------------- PUBLIC CLIENT ROUTES -----------------
+  { path: 'tour-guides', component: TourGuidesComponent },
+  { path: 'top-tour-guides', component: TopTourGuidesComponent },
+  { path: 'tourguide-booking', component: TourGuideBookingComponent },
+  { path: 'tour-guide-details/:guideId', component: TourGuideDetailsComponent },
+  { path: 'tour-packages', component: TourPackagesComponent },
+  { path: 'package-details/:packageId', component: PackageDetailsComponent },
+  { path: 'package-booking/:packageId', component: PackageBookingComponent },
+
   { path: 'hotel-reservation', component: AllHotelsComponent },
   { path: 'hotel-details/:hotelId', component: HotelsDetailsComponent },
   { path: 'hotel-booking', component: HotelBookingComponent },
   { path: 'room-details/:roomId', component: RoomDetailsComponent },
-  { path: 'tour-guides', component: TourGuidesComponent },
-  { path: 'top-tour-guides', component: TopTourGuidesComponent },
-  { path: 'tour-guide-details/:guideId', component: TourGuideDetailsComponent },
-  { path: 'tourguide-booking', component: TourGuideBookingComponent },
-  { path: 'tour-packages', component: TourPackagesComponent },
-  { path: 'package-details/:packageId', component: PackageDetailsComponent },
-  { path: 'package-booking/:packageId', component: PackageBookingComponent },
-  { path: 'register', component: RegisterComponent },
-  {
-    path: 'login', component: LoginComponent,
-  },
-  {
-    path: 'register/company', component: CompanyRegisterComponent,
-  },
-  {
-    path: 'register/guide', component: TourGuideRegisterComponent,
-  },
-  {
-    path: 'register/hotel', component: HotelRegisterComponent,
-  },
-  {
-    path: 'register/tourist', component: TouristRegisterComponent,
-  },
+
+  // ----------------- TOURIST -----------------
   {
     path: 'tourist',
-    component: HomeComponent,
     canActivate: [AuthGuard, touristGuard],
     children: [
-      { path: 'trips', component: TouristTripsComponent, title: 'Tourist Trips' },
-      { path: 'messages', component: TouristMessagesComponent, title: 'Tourist Messages' },
-      { path: 'hotel-offers', component: HotelOffersComponent, title: 'Tourist Offers' },
-      { path: 'hotel-details/:hotelId', component: HotelDetailsComponent, title: 'Tourist Hotel Details' },
-      { path: 'dashboard/guide-offers', component: TourGuideOffersComponent, title: 'Tourist Offers' },
+      { path: '', component: HomeComponent },
+
+      { path: 'dashboard', component: TouristDashboardComponent },
+      {
+        path: 'dashboard/edit-booking/:id', component: EditBookingComponent,
+      },
+      { path: 'trips', component: TouristTripsComponent },
+      { path: 'messages', component: TouristMessagesComponent },
+      { path: 'hotel-offers', component: HotelOffersComponent },
+      { path: 'hotel-details/:hotelId', component: HotelDetailsComponent },
+      { path: 'dashboard/guide-offers', component: TourGuideOffersComponent }
     ]
   },
-  { path: 'tourist/dashboard', component: TouristDashboardComponent, title: 'Tourist DashBoard' },
-  {
-    path: 'tourist/dashboard/edit-booking/:id', component: EditBookingComponent, title: 'Edit Booking', resolve: {
-      id: (route: ActivatedRouteSnapshot) => {
-        return route.paramMap.get('id');
-      }
-    }
-  },
 
+  // ----------------- TOUR GUIDE -----------------
   {
     path: 'tour-guide',
     component: TourGuidesMainComponent,
     canActivate: [AuthGuard, tourGuideGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: OverviewComponent, title: 'TourGuide DashBoard' },
-      { path: 'profile', component: ManagerTourGuideProfileComponent, title: 'Manage Profile' },
+      { path: 'dashboard', component: OverviewComponent },
+      { path: 'profile', component: ManagerTourGuideProfileComponent }
     ]
   },
+
+  // ----------------- COMPANY -----------------
   {
     path: 'company',
     component: TourismCompanyComponent,
     canActivate: [AuthGuard, companyGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: CompanyDashboardComponent, title: 'Company DashBoard' },
-      { path: 'new-package', component: CreatePackageComponent, title: 'Create Package' },
-      {
-        path: 'edit-package/:id', component: EditPackageComponent, title: 'Edit Package', resolve: {
-          package: (route: ActivatedRouteSnapshot) => {
-            return route.paramMap.get('id');
-          }
-        }
-      },
-      { path: 'bookings', component: ManageBookingsComponent, title: 'Manage Bookings' },
+      { path: 'dashboard', component: CompanyDashboardComponent },
+      { path: 'new-package', component: CreatePackageComponent },
+      { path: 'edit-package/:id', component: EditPackageComponent },
+      { path: 'bookings', component: ManageBookingsComponent }
     ]
   },
+
+  // ----------------- HOTEL -----------------
   {
     path: 'hotel',
     component: HotelComponent,
     canActivate: [AuthGuard, hotelGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: HotelDashboardComponent, title: 'Hotel DashBoard' },
-      { path: 'profile', component: ManageHotelProfileComponent, title: 'Manage Profile' },
-      { path: 'new-room', component: CreateRoomComponent, title: 'Manage Profile' },
-      { path: 'rooms', component: RoomsTableComponent, title: 'Manage Rooms' },
-      {
-        path: 'rooms/:id', component: ManageRoomComponent, title: 'Manage Room', resolve: {
-          id: (route: ActivatedRouteSnapshot) => {
-            return route.paramMap.get('id');
-          }
-        }
-      },
+      { path: 'dashboard', component: HotelDashboardComponent },
+      { path: 'profile', component: ManageHotelProfileComponent },
+      { path: 'new-room', component: CreateRoomComponent },
+      { path: 'rooms', component: RoomsTableComponent },
+      { path: 'rooms/:id', component: ManageRoomComponent }
     ]
   },
-  { path: '**', redirectTo: 'tour-guides' }
+
+  // ----------------- CATCH ALL -----------------
+  { path: '**', redirectTo: '' }
 ];
+

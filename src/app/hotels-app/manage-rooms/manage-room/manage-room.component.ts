@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { HotelsService } from '../../hotels-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from '../../interfaces/hotel-dashboard';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
@@ -22,27 +22,32 @@ export class ManageRoomComponent implements OnInit {
 
   id = '';
 
+  router = inject(Router);
 
   photos: File[] = [];
 
+  isRoomReqFinished = false;
+
   ngOnInit(): void {
-    this.service.hotelDashBoard$.subscribe(
-      {
-        next: (value) => {
-          console.log(value);
-          value.rooms?.map((e) => {
-            if (e.roomId == this.id) {
-              this.room = e;
-            }
-          });
-        },
-      }
-    );
     this.route.data.subscribe({
       next: (value) => {
         this.id = value['id'];
       },
     });
+    this.service.hotelDashBoard$.subscribe(
+      {
+        next: (value) => {
+          console.log(value);
+          this.isRoomReqFinished = true;
+          value.rooms?.map((e) => {
+            if (e.roomId == this.id) {
+              this.room = e;
+              console.log('found room!');
+            }
+          });
+        },
+      }
+    );
     this.service.getHotelDashBoard();
   }
 

@@ -5,11 +5,6 @@
   padding: 16px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   animation: fadeIn 0.8s ease-out;
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
 }
 
 /* Title styles */
@@ -34,13 +29,25 @@
   }
 
   @keyframes slideIn {
-    from { opacity: 0; transform: translateY(-15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes underlineGrow {
-    from { width: 0; }
-    to { width: 70px; }
+    from {
+      width: 0;
+    }
+
+    to {
+      width: 70px;
+    }
   }
 }
 
@@ -71,9 +78,17 @@
     }
 
     @keyframes iconPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
   }
 }
@@ -143,8 +158,15 @@
   }
 
   @keyframes popIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }
 
@@ -178,8 +200,15 @@
   }
 
   @keyframes cardFadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
@@ -223,8 +252,15 @@
   }
 
   @keyframes imageFadeIn {
-    from { opacity: 0; filter: blur(4px); }
-    to { opacity: 1; filter: blur(0); }
+    from {
+      opacity: 0;
+      filter: blur(4px);
+    }
+
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
   }
 }
 
@@ -316,9 +352,17 @@
   }
 
   @keyframes starPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
   }
 }
 
@@ -354,16 +398,23 @@
   }
 
   @keyframes buttonPop {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }
 
 /* Responsive design */
 @media (max-width: 1024px) {
-.results-grid {
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
+  .results-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
@@ -399,7 +450,10 @@
     font-size: 1.5rem;
   }
 
-  .description, .filters-result-location p, .filters-result-price-section p, .filters-result-star-rating p {
+  .description,
+  .filters-result-location p,
+  .filters-result-price-section p,
+  .filters-result-star-rating p {
     font-size: 0.9rem;
   }
 

@@ -4,6 +4,8 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, ReplaySubject, take, tap } from 'rxjs';
 import { AlertDialogComponent } from '../alert-dialog-component/alert-dialog-component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { LoadingDialogComponent } from '../shared-app/Components/loading-dialog/loading-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +20,23 @@ export class HotelsService {
     });
   }
   editRoom(room: FormData, roomId: string) {
+    const ref = this.matDialog.open(LoadingDialogComponent, {
+      disableClose: true,
+    });
     return this.client.put<Room>(this.baseUrl + 'rooms/' + roomId, room, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       }
     }).subscribe({
       next: (value) => {
+        ref.close();
         this.matDialog.open(AlertDialogComponent, {
           data: {
             title: 'TripLink',
-            message: 'Room Updated Successfully'
+            message: 'Room Updated Successfully',
+            method: () => {
+              inject(Router).navigate(['/hotel/rooms'])
+            }
           }
         });
         this.hotelDashBoard$.subscribe(
@@ -40,7 +49,9 @@ export class HotelsService {
           }
         );
       },
+
       error: (err) => {
+        ref.close();
         let message = '';
         err['error']['errors'].map((e: string) => message += e + '\n');
         this.matDialog.open(AlertDialogComponent, {

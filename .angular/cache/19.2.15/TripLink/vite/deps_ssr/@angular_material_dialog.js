@@ -1,6 +1,8 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   A11yModule,
+  BidiModule,
+  Directionality,
   ESCAPE,
   FocusMonitor,
   FocusTrapFactory,
@@ -16,17 +18,13 @@ import {
   coerceElement,
   coerceNumberProperty,
   hasModifierKey
-} from "./chunk-T7QKU7LO.js";
-import {
-  BidiModule,
-  Directionality
-} from "./chunk-UUTP3235.js";
+} from "./chunk-KBA3CLIB.js";
 import {
   Location
-} from "./chunk-XZIY4MOL.js";
+} from "./chunk-AI2OSJ37.js";
 import {
   DOCUMENT
-} from "./chunk-POUHVWWY.js";
+} from "./chunk-JKNE7E3P.js";
 import {
   ANIMATION_MODULE_TYPE,
   ApplicationRef,
@@ -88,7 +86,7 @@ import {
   ɵɵstyleProp,
   ɵɵtemplate,
   ɵɵviewQuery
-} from "./chunk-SWIVHK54.js";
+} from "./chunk-5OXK7WRT.js";
 import {
   require_cjs
 } from "./chunk-AQYIT73X.js";

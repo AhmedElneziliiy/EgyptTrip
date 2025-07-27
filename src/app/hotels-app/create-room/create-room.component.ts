@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AlertDialogComponent } from '../../alert-dialog-component/alert-dialog-component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { LoadingDialogComponent } from '../../shared-app/Components/loading-dialog/loading-dialog.component';
 
 @Component({
   selector: 'app-create-room',
@@ -33,6 +35,8 @@ export class CreateRoomComponent implements OnInit {
 
   service = inject(HotelsService);
 
+  router = inject(Router);
+
   photos: File[] = [
   ];
 
@@ -50,19 +54,28 @@ export class CreateRoomComponent implements OnInit {
     this.photos.map((e) => {
       formData.append('Photos', e);
     });
+    const ref = this.matDialog.open(LoadingDialogComponent, {
+      disableClose: true,
+    });
     this.service.addNewRoom(formData).subscribe(
       {
+
         next: (value) => {
+          ref.close();
           this.room = value;
           this.matDialog.open(AlertDialogComponent, {
             data: {
               title: 'TripLink',
-              message: 'Room Created Successfully!'
+              message: 'Room Created Successfully!',
+              method: () => {
+                this.router.navigate(['/hotel/dashboard'])
+              }
             }
           });
           this.photos = [];
         },
         error: (err) => {
+          ref.close();
           let message = '';
           err['error']['errors'].map((e: string) => message += e + '\n');
           this.matDialog.open(AlertDialogComponent, {
