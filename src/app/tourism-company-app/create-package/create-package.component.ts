@@ -1,11 +1,14 @@
 import { Package } from './../interfaces/package';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { CompanyService } from '../services/company.service';
 import { Destination } from '../interfaces/package';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AlertDialogComponent } from '../../alert-dialog-component/alert-dialog-component';
 import { MatDialog } from '@angular/material/dialog';
+import { title } from 'process';
+import { Router } from '@angular/router';
+import { LoadingDialogComponent } from '../../shared-app/Components/loading-dialog/loading-dialog.component';
 
 @Component({
   selector: 'app-create-package',
@@ -47,6 +50,8 @@ export class CreatePackageComponent implements OnInit {
     destinationIds: [],
   };
 
+  router = inject(Router);
+
   ngOnInit(): void {
     this.service.destinations$.subscribe({
       next: (value) => {
@@ -71,15 +76,29 @@ export class CreatePackageComponent implements OnInit {
     const formData = this.toFormData(this.package);
     this.photos.map((e) => formData.append('Photos', e));
     this.package.destinationIds!.map((e) => formData.append('DestinationIds', e.toString()));
-    formData.delete('destinationIds')
+    formData.delete('destinationIds');
+
+    const ref = this.matDialog.open(LoadingDialogComponent, {
+      disableClose: true,
+    });
 
     this.service.createPackage(formData).subscribe(
       {
 
         next: (val) => {
-          alert("Package Created Successfully!");
+          ref.close();
+          this.matDialog.open(AlertDialogComponent, {
+            data: {
+              title: 'TripLink',
+              message: 'Package Created Successfully!',
+              method: () => {
+                this.router.navigate(['/company/dashboard'])
+              }
+            }
+          })
         },
         error: (error) => {
+          ref.close();
           let message = '';
           console.log(error.errors);
         }

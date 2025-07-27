@@ -1,97 +1,94 @@
 {
-  "hash": "d0426ff0",
-  "configHash": "0d3a8a3c",
-  "lockfileHash": "0350fd3f",
-  "browserHash": "e843655c",
+  "hash": "6f90d943",
+  "configHash": "af7f30b0",
+  "lockfileHash": "feaa23e3",
+  "browserHash": "3e335e77",
   "optimized": {
-    "@angular/cdk/bidi": {
-      "src": "../../../../../../node_modules/@angular/cdk/fesm2022/bidi.mjs",
-      "file": "@angular_cdk_bidi.js",
-      "fileHash": "c9407ac7",
+    "@angular/animations": {
+      "src": "../../../../../../node_modules/@angular/animations/fesm2022/animations.mjs",
+      "file": "@angular_animations.js",
+      "fileHash": "9c225b10",
       "needsInterop": false
     },
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "c17dd12c",
+      "fileHash": "c64a9c62",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "4fe3cfde",
+      "fileHash": "e14fe327",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "edd6fa41",
+      "fileHash": "de3037d3",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "4df4f25a",
+      "fileHash": "4f023b9a",
       "needsInterop": false
     },
     "@angular/material/dialog": {
       "src": "../../../../../../node_modules/@angular/material/fesm2022/dialog.mjs",
       "file": "@angular_material_dialog.js",
-      "fileHash": "c4fa200d",
+      "fileHash": "bc6879db",
       "needsInterop": false
     },
     "@angular/material/progress-spinner": {
       "src": "../../../../../../node_modules/@angular/material/fesm2022/progress-spinner.mjs",
       "file": "@angular_material_progress-spinner.js",
-      "fileHash": "ab2a1d8d",
+      "fileHash": "01b517d4",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "fb5cceff",
+      "fileHash": "f178fd6c",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "b24048ed",
+      "fileHash": "10b808ca",
       "needsInterop": false
     },
     "jwt-decode": {
       "src": "../../../../../../node_modules/jwt-decode/build/esm/index.js",
       "file": "jwt-decode.js",
-      "fileHash": "3eb35773",
+      "fileHash": "623c8128",
       "needsInterop": false
     },
     "rxjs": {
       "src": "../../../../../../node_modules/rxjs/dist/esm5/index.js",
       "file": "rxjs.js",
-      "fileHash": "9400bca8",
+      "fileHash": "8a9b998c",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-4DKRDPQH": {
-      "file": "chunk-4DKRDPQH.js"
+    "chunk-V7AVIRW4": {
+      "file": "chunk-V7AVIRW4.js"
     },
-    "chunk-UQWNYCER": {
-      "file": "chunk-UQWNYCER.js"
+    "chunk-ZKA4J3UG": {
+      "file": "chunk-ZKA4J3UG.js"
     },
-    "chunk-224OF2CP": {
-      "file": "chunk-224OF2CP.js"
+    "chunk-U7PUFSMB": {
+      "file": "chunk-U7PUFSMB.js"
     },
-    "chunk-MNYYNOOB": {
-      "file": "chunk-MNYYNOOB.js"
+    "chunk-2JCXW5GD": {
+      "file": "chunk-2JCXW5GD.js"
     },
-    "chunk-GBANFASH": {
-      "file": "chunk-GBANFASH.js"
+    "chunk-TEHV3WAZ": {
+      "file": "chunk-TEHV3WAZ.js"
     },
-    "chunk-QZ2E34AJ": {
-      "file": "chunk-QZ2E34AJ.js"
-    },
-    "chunk-5QXQOMPN": {
-      "file": "chunk-5QXQOMPN.js"
+    "chunk-BKKCWFZ2": {
+      "file": "chunk-BKKCWFZ2.js"
     },
     "chunk-P6U2JBMQ": {
       "file": "chunk-P6U2JBMQ.js"

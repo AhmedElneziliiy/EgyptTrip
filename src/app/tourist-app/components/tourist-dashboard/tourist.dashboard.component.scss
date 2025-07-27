@@ -23,6 +23,22 @@
      }
  }
 
+ .animate {
+     animation: fadeSlide 1.5s ease-out;
+ }
+
+ @keyframes fadeSlide {
+     from {
+         opacity: 0;
+         transform: translateY(20px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
  // Start Of Dashboard Text 
 
  .dashboard-text {
@@ -72,7 +88,6 @@
  .dashboard-card {
      display: flex;
      flex-direction: column;
-     background-color: #F2F0E2;
      color: black;
      border-radius: 7px;
      padding: 30px;
@@ -82,10 +97,10 @@
  // Start Of Recent Booking  
 
  table {
-     border: 1px solid black;
      border-radius: 10px;
      width: 100%;
      border-spacing: 0;
+     box-shadow: 0 0 1px 0px;
      border-collapse: separate;
  }
 
@@ -106,7 +121,6 @@
      .recent-booking tr {
          display: block;
          margin-bottom: 15px;
-         border-bottom: 3px solid black;
      }
 
      .recent-booking tr:last-child {
@@ -164,6 +178,11 @@
      .recent-booking th,
      .recent-booking td {
          padding: 10px 15px;
+         border-bottom: 1px solid grey;
+     }
+
+     .recent-booking tr:last-child td {
+         border-bottom: none;
      }
  }
 
@@ -172,21 +191,36 @@
      text-align: left;
  }
 
- @media (min-width:768px) {
-
-     .recent-booking td,
-     .recent-booking th {
-         border-bottom: 1px solid black;
-     }
-
+ @media (min-width:768px) and (max-width:991px) {
      .recent-booking tr:last-child td {
          border-bottom: none;
+     }
+
+     .actions {
+         display: flex;
+         flex-direction: column;
+         gap: 9px;
      }
  }
 
  @media (max-width:767px) {
      .recent-booking td[data-label="Actions"] p:last-child {
          margin-inline-start: 25%;
+     }
+
+     .recent-booking th {
+         display: none;
+     }
+
+     .actions {
+         display: flex;
+         flex-direction: row;
+     }
+ }
+
+ @media (min-width:992px) {
+     .actions button:last-child {
+         margin-left: 10px;
      }
  }
 
@@ -201,31 +235,41 @@
      transform: translateX(-50%);
  }
 
- .status-Confirmed {
-     background-color: #e0f7e9;
-     color: #2e7d32;
-     padding: 6px 12px;
-     border-radius: 20px;
-     display: inline-block;
-     font-size: 14px;
+ .status-based-headings {
+     display: flex;
+     flex-direction: row;
+     gap: 30px;
+     margin-top: 40px;
+     flex-wrap: wrap;
  }
 
- .status-Pending {
-     background-color: #fff3cd;
-     color: #856404;
-     padding: 6px 12px;
-     border-radius: 20px;
-     display: inline-block;
-     font-size: 14px;
+ .status-based-bookings {
+     display: flex;
+     flex-direction: column;
  }
 
- .status-Cancelled {
-     background-color: #bf2f2f;
-     color: white;
-     padding: 6px 12px;
-     border-radius: 20px;
-     display: inline-block;
-     font-size: 14px;
+ .status-based-bookings h4 {
+     position: relative;
+     cursor: pointer;
+     overflow: hidden;
+     padding: 8px 0;
+ }
+
+ .status-based-bookings h4 .active-status {
+     display: block;
+     position: absolute;
+     height: 4px;
+     width: 100%;
+     bottom: 0px;
+     transform: translateX(0px);
+     background-color: rgba(128, 0, 128, 0.672);
+     transition: all 0.5s ease-in-out;
+ }
+
+ @media (max-width:576px) {
+     .container {
+         width: 85%;
+     }
  }
 
  // End Of Recent Booking  
@@ -259,4 +303,14 @@
      .reviews {
          padding: 0 100px;
      }
+ }
+
+ .btn-purple {
+     background-color: rgba(128, 0, 128, 0.672);
+     border: none;
+     color: white;
+ }
+
+ .btn-purple:hover {
+     background-color: rgba(112, 0, 112, 0.8);
  }

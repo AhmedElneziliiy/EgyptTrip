@@ -1,6 +1,7 @@
 <div class="manage-profile mb-4">
     <div class="container">
         <h1 class="mt-5">Profile</h1>
+        @defer (when isRoomReqFinished) {
         <div class="photo-slider">
             @for (item of room.photoUrls; track $index ; let i = $index) {
             <div class="photo">
@@ -8,7 +9,6 @@
             </div>
             }
         </div>
-        @defer (when room) {
         <p>Manage your Profile details</p>
         <h2 class="mt-2">Profile Images</h2>
         <form (ngSubmit)="editRoom()">

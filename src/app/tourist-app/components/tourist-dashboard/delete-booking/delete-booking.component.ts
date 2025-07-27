@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { SharedAppModule } from '../../../../shared-app/shared-app.module';
 import { TouristService } from '../../../tourist.service';
 import { AlertDialogComponent } from '../../../../alert-dialog-component/alert-dialog-component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-booking',
@@ -20,7 +21,6 @@ export class DeleteBookingComponent implements OnInit {
   id!: string;
 
   itemName!: string;
-
   confirm() {
     this.service.deleteBooking(this.id).subscribe(
       {
@@ -28,7 +28,7 @@ export class DeleteBookingComponent implements OnInit {
           this.matDialog.open(AlertDialogComponent, {
             data: {
               title: 'TripLink',
-              message: 'Booking deleted successfully!'
+              message: 'Booking deleted successfully!',
             }
           });
 

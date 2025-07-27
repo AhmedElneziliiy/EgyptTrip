@@ -2,11 +2,12 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { HotelsService } from '../hotels-service.service';
 import { Hotel } from '../interfaces/hotel-dashboard';
 import { AlertDialogComponent } from '../../alert-dialog-component/alert-dialog-component';
+import { LoadingDialogComponent } from '../../shared-app/Components/loading-dialog/loading-dialog.component';
 
 @Component({
   selector: 'app-manage-hotel-profile',
@@ -63,17 +64,25 @@ export class ManageHotelProfileComponent implements OnInit {
         formData.append('Photos', e);
       }
     );
+    const ref = this.matDialog.open(LoadingDialogComponent, {
+      disableClose: true,
+    });
     this.service.editProfile(formData, this.hotel.hotelID).subscribe({
       next: (value) => {
+        ref.close();
         this.hotel = value;
         this.matDialog.open(AlertDialogComponent, {
           data: {
             title: 'TripLink',
-            message: 'Profile Updated Successfully!'
+            message: 'Profile Updated Successfully!',
+            method: () => {
+              inject(Router).navigate(['/hotel/profile']);
+            }
           }
         });
       },
       error: (err) => {
+        ref.close();
         let message = '';
         err['error']['errors'].map((e: string) => message += e + '\n');
         this.matDialog.open(AlertDialogComponent, {

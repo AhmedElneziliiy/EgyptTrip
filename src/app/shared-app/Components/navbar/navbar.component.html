@@ -1,42 +1,30 @@
-<!-- Header with Navigation -->
-<header>
-  <div class="header-container">
-    <a href="#" class="logo">
-      <img src="/images/logo.svg" alt="Logo">
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/tourist">
+      <img src="images/logo.svg" alt="Logo">
     </a>
-
-    <!-- Desktop Navigation -->
-    <nav class="desktop-nav">
-      <ul class="nav-list">
-        <li class="nav-item"><a routerLink="/tourist" class="nav-link">Home</a></li>
-        <li class="nav-item"><a routerLink="/tourist/dashboard" class="nav-link">DashBoard</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/tour-packages">Packages</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/hotel-reservation">Hotels</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/Tour Guides">Tour Guides</a></li>
-      </ul>
-    </nav>
-
-
-    <!-- Mobile Toggle Button -->
-    <button class="mobile-toggle" id="mobileToggle" (click)="toggleMenu()">
-      <i class="fas" [ngClass]="isMenuActive ? 'fa-times' : 'fa-bars'"></i>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/tourist">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/tourist/dashboard">DashBoard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/tour-packages">Packages</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/hotel-reservation">Hotels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/tour-guides">Tour Guides</a>
+        </li>
+      </ul>
+    </div>
   </div>
-</header>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu" [ngClass]="{'active': isMenuActive}">
-  <ul class="mobile-nav-list">
-    <li class="mobile-nav-item"><a href="#" class="mobile-nav-link" (click)="closeMenu()">Home</a></li>
-    <li class="mobile-nav-item"><a href="#" class="mobile-nav-link" (click)="closeMenu()">About</a></li>
-    <li class="mobile-nav-item"><a href="#" class="mobile-nav-link" (click)="closeMenu()">Make Your Trip</a></li>
-    <li class="mobile-nav-item"><a href="#" class="mobile-nav-link" (click)="closeMenu()"
-        routerLink="/hotel-reservation">Our Hotels</a></li>
-    <li class="mobile-nav-item"><a href="#" class="mobile-nav-link" (click)="closeMenu()" routerLink="/Tour Guides">Our
-        Tour Guides</a></li>
-  </ul>
-</div>
-
-<!-- Overlay for Mobile Menu -->
-<div class="overlay" id="overlay" [ngClass]="{'active': isMenuActive}" (click)="closeMenu()"></div>
-`,
+</nav>

@@ -11,8 +11,10 @@ export class AlertDialogComponent {
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, private ref: MatDialogRef<AlertDialogComponent>) { }
     get title() { return this.data.title; }
     get message() { return this.data.message; }
+    get method() { return this.data.method; }
 
     close() {
         this.ref.close();
+        this.method();
     }
 }

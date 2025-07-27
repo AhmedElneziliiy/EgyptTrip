@@ -8,7 +8,7 @@ import { TopTourGuidesComponent } from "./top-tour-guides/top-tour-guides.compon
 @Component({
   selector: 'app-tour-guides',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, AllTourGudiesComponent, TopTourGuidesComponent],
+  imports: [CommonModule, RouterModule, AllTourGudiesComponent, TopTourGuidesComponent],
   templateUrl: './tour-guides.component.html',
   styleUrls: ['./tour-guides.component.scss']
 })
@@ -64,7 +64,7 @@ export class TourGuidesComponent {
     }
   ];
 
-selectedGuide: any = null;
+  selectedGuide: any = null;
 
   openSlidePanel(guideId: string) {
     this.selectedGuide = this.tourGuides.find(guide => guide.id === guideId) || null;

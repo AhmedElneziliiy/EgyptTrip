@@ -6,7 +6,7 @@ import { TravellersGalleryComponent } from "./Components/travellers-gallery/trav
 
 @Component({
   selector: 'app-home',
-  imports: [NavbarComponent, HeroSectionComponent, WhoUsComponentComponent, TravellersGalleryComponent],
+  imports: [NavbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

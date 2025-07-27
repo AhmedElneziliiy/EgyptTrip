@@ -1,16 +1,16 @@
 import { MatDialog } from '@angular/material/dialog';
 import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { NavbarComponent } from '../../../shared-app/Components/navbar/navbar.component';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth-service.service';
 import { User } from './user';
 import { AlertDialogComponent } from '../../../alert-dialog-component/alert-dialog-component';
-import { jwtDecode } from 'jwt-decode';
+import { LoadingDialogComponent } from '../../../shared-app/Components/loading-dialog/loading-dialog.component';
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 @Component({
   selector: 'app-login',
-  imports: [RouterModule, NavbarComponent, FormsModule, CommonModule],
+  imports: [RouterModule, FormsModule, CommonModule, MatProgressSpinnerModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -19,6 +19,8 @@ export class LoginComponent {
   user!: User;
 
   service = inject(AuthService);
+
+  isLoggingIn!: boolean;
 
   constructor(private matDialog: MatDialog, private router: Router) {
     this.user = {
@@ -52,13 +54,19 @@ export class LoginComponent {
       return;
     }
     else {
+      const ref = this.matDialog.open(LoadingDialogComponent, {
+        disableClose: true,
+      })
+
       this.service.login(this.user).subscribe({
         next: (value) => {
+          ref.close();
           localStorage.setItem('email', this.user.email!);
           console.log(value);
           this.matDialog.open(AlertDialogComponent, {
             data: {
-              title: 'Login is successful!',
+              title: 'TripLink',
+              message: 'Login is successful!',
             }
           });
         },
